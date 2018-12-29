@@ -1,0 +1,34 @@
+<!Doctype html>
+<html>
+<head>
+
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular.min.js"></script>
+	<script>
+	var app = angular.module('app', []);
+app.controller('loginController', function($scope) {
+	    $scope.user = {
+		firstName: "Bharathwaj",
+		lastName: "Shankar"
+	    };
+	    $scope.logins = [];
+	    $scope.login = function () {
+		$scope.logins.push($scope.user.firstName + $scope.user.lastName + " was logged in.");
+	    };
+	});
+</script>
+
+</head>
+
+<body ng-app="app">
+
+	<div  ng-controller="loginController">
+    <div>Hello {{ user.firstName }} {{ user.lastName}}</div>
+   <div>Firstname: <input ng-model="user.firstName"></div>
+    <div>Lastname:<input ng-model = "user.lastName"></div>
+    <div><input type="submit" ng-click="login()" value="Login"></div>
+    <div ng-repeat="login in logins">{{ login }}</div>
+</div>
+
+</body>
+
+</html>

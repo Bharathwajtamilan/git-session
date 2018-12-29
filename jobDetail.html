@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+
+<title>Job Detail</title>
+
+</head>
+<body class="overflow-hidden">
+
+	<!-- Login CONTENT-->
+	<div class="content">
+		<div class="padding-md">
+			<div class="col-md-12">
+
+				<div class="tabbable tabs-left ">
+					<!-- Only required for left/right tabs -->
+
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-target="#jobDetail"
+							data-toggle="tab" class="cursor"> Job Detail </a></li>
+<!-- 						<li><a data-target="#step" data-toggle="tab" class="cursor" -->
+<!-- 							ng-show={{isEdit}}> Step </a></li> -->
+<!-- 						<li><a data-target="#jobSetting" data-toggle="tab" -->
+<!-- 							class="cursor" ng-show={{isEdit}}> Job Setting </a></li> -->
+					</ul>
+					<div class="tab-content ">
+						<div class="tab-pane active " id="jobDetail">
+							<div class="col-xs-6 col-sm-7 col-md-9">
+								<div class="cd-wrap-imp">
+									<div class="panel panel-default">
+
+										<div class="panel-heading">Job Detail</div>
+
+										<div>
+											<form name="form"  role="form">
+												<div class="panel-body">
+
+													<div class="row">
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Job Name</label> <input maxlength="55"
+																	type="text" class="form-control" name="jobName"
+																	ng-model="jobDetails.jobName">
+															</div>
+														</div>
+														
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Job Code</label> <input maxlength="55"
+																	type="text" class="form-control" name="jobCode"
+																	ng-model="jobDetails.jobCode" >
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Interval</label> <input type="number" name="interval"
+																	class="form-control" ng-model="jobDetails.interval">
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Interval Type</label> <select
+																	class="form-control" name="type"
+																	ng-options="intervalType for intervalType in jobDetailIntervalType" name="intervalType"
+																	ng-model="jobDetails.intervalType">
+																	<option value="">---Please Select---</option>
+																</select>
+
+																<!-- <input type="text" class="form-control"
+																	ng-model="jobDetails.intervalType"> -->
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Status</label> <select class="form-control"
+																	name="type"
+																	ng-options="status for status in jobDetailStatus" name="status"
+																	ng-model="jobDetails.status">
+																	<option value="">---Please Select---</option>
+																</select>
+
+																<!-- <input type="text" class="form-control"
+																	ng-model="jobDetails.intervalType"> -->
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6" ng-show="isEdit">
+															<div class="form-group">
+																<label>Last Start Time</label>
+																<div ng-disabled="true" id="date"
+																	class='input-group date' id='datetimepicker1' datetimez
+																	mo-date-input={{dateFormat}}
+																	ng-value="jobDetails.lastStartTimeFormatted"
+																	ng-model="jobDetails.lastStartTime"></div>
+
+																<!-- <input ng-disabled="true" type="date"
+																	class="form-control"
+																	ng-model="jobDetails.lastStartTime"> -->
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6" ng-show="isEdit">
+															<div class="form-group">
+																<label>Last End Time</label>
+																<div ng-disabled="true" id="date"
+																	class='input-group date' id='datetimepicker1' datetimez
+																	mo-date-input={{dateFormat}}
+																	ng-value="jobDetails.lastEndTimeFormatted"
+																	ng-model="jobDetails.lastEndTime"></div>
+
+																<!-- <input ng-disabled="true"
+																	type="date" class="form-control"	
+																	ng-model="jobDetails.lastEndTime"> -->
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Next Run Time</label>
+																<div id="date" class='input-group date'
+																	id='datetimepicker1' datetimez
+																	mo-date-input={{dateFormat}}
+																	ng-value="jobDetails.nextRunTimeFormatted"
+																	ng-model="jobDetails.nextRunTime"></div>
+
+																<!-- <input type="date" class="form-control"
+																	ng-model="jobDetails.nextRunTime"> -->
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Last Scheduled Start Time</label>
+																<div id="date" class='input-group date'
+																	id='datetimepicker1' datetimez
+																	mo-date-input={{dateFormat}}
+																	ng-value="jobDetails.lastScheduledStartTimeFormatted"
+																	ng-model="jobDetails.lastScheduledStartTime"></div>
+
+																<!-- <input type="date" class="form-control"
+																	ng-model="jobDetails.nextRunTime"> -->
+															</div>
+														</div>
+
+													</div>
+													
+
+
+													<div class="row">
+														<div class="text-right mgright">
+															<button type="submit" class="btn btn-info btn-sm" ng-click="update()">Save</button>
+
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+										
+										
+													
+									</div>
+									
+									
+									
+									
+						<div>
+						<div class="panel panel-default">
+
+							<div class="panel-heading">Step Detail</div>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										
+										<th>ID</th> 
+										<th>JOB_DETAIL_ID</th>
+										<th>PARENT_ID</th>
+										<th> SUCCESS_KEY</th> 
+										<th>SUCCESS_VALUE</th>
+										<th>FAILURE_JOB_DETAIL_ID</th> 
+										<th>STEP_TYPE</th> 
+										<th>CREATED_BY</th>
+										<th> CREATION_DATE</th>
+										<th> LAST_UPDATE_DATE</th>
+										<th> LAST_UPDATED_BY</th>
+										<th> CLIENT_ID</th>
+										<th> OBJECT_TYPE</th>
+										<th> PATH</th>
+										<th> REQUEST_TEMPLATE</th>
+										<th> RESPONSE_TYPE</th>
+										<th> RESULT</th>
+										<th> SEQUENCE</th>
+										<th> SUB_TYPE</th>
+										<th> TYPE</th>
+										<th> HEADER_TEMPLATE</th>
+										<th> RESPONSE_FORMATTER_JS</th>
+										<th> ERROR_FORMATTER_JS</th>
+										<th> LOGGING_ENABLED</th>
+										<th> REQUEST_VALIDATOR</th>
+										<th> FAILURE_STEP_ID</th>
+										<th> UNIQUE_KEY_TEMPLATE</th>
+										<th> DRY_RUN_RESPONSE</th>
+										<th>SKIP_UNIQUE</th>
+										<th> STEP_CODE</th>
+										<th> DUPLICATE_CHECK_ENABLED</th>
+										
+									</tr>
+								</thead>
+							<tbody>
+							</table>
+						</div>
+						</div>
+
+								</div>
+							</div>
+						</div>
+						
+
+						<!-- row adding -->
+						<div class="tab-pane " id="step">
+							<div class="col-xs-6 col-sm-7 col-md-9">
+								<div class="cd-wrap-imp">
+									<div class="panel-group" ng-show=true>
+										<div class="panel panel-default">
+
+											<div class="panel-heading">
+												Step
+												<button class="btn btn-xs btn-info pull-right"
+													data-ng-click="createNewStep()">
+													<i class="fa fa-plus"></i>Add New
+												</button>
+											</div>
+
+											<div class="panel-body">
+												<div class="col-xs-12 col-sm-12 col-md- 12">
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered">
+															<thead>
+																<tr>
+																	<th>Path</th>
+																	<th>Sub Type</th>
+																	<th>Edit</th>
+
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat='stepDetail in stepDetails'>
+
+																	<td>{{stepDetail[8]}}</td>
+																	<td>{{stepDetail[13]}}</td>
+																	<td><a class="cursor" data="{{stepDetail[0]}}"
+																		data-ng-click="editStepDetail(stepDetail[0])"><i
+																			class="fa fa-pencil" aria-hidden="true"></i></a></td>
+
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+											<!-- Pop Up code for New Payment -->
+											<div id="stepNew" class="modal fade con-messagebox"
+												role="dialog">
+												<div class="modal-dialog">
+													<!-- Modal content-->
+													<div class="modal-content">
+														<div class="modal-header">
+															<h4 class="modal-title">Step</h4>
+														</div>
+														<div class="modal-body">
+															<div class="panel panel-default">
+																<div class="panel-body">
+																	<form name="stepForm" ng-submit="updateStep()">
+
+																		<div class="form-group">
+																			<label>Type</label> <select class="form-control"
+																				name="type" ng-options="type for type in stepType"
+																				ng-model="stepDetailSave[7]">
+																				<option value="">---Please Select---</option>
+																			</select>
+																			<!-- <input type="text" class="form-control" name="type"
+																				placeholder="Type" ng-model="stepDetailSave[15]"> -->
+																		</div>
+
+																		<div class="form-group">
+																			<label>Sub Type</label> <input type="text"
+																				class="form-control" name="subType"
+																				placeholder="Sub Type" ng-model="stepDetailSave[14]">
+																		</div>
+
+																		<div class="form-group">
+																			<label>Path</label> <input type="text"
+																				class="form-control" name="path" placeholder="Path"
+																				ng-model="stepDetailSave[9]">
+																		</div>
+
+																		<div class="form-group">
+																			<label>Object Type</label> <select
+																				class="form-control" name="objectType"
+																				ng-options="objectType for objectType in stepObjectType"
+																				ng-model="stepDetailSave[8]">
+																				<option value="">---Please Select---</option>
+																			</select>
+
+																			<!-- <input type="text" class="form-control"
+																				name="objectType" placeholder="Object Type"
+																				ng-model="stepDetailSave[8]"> -->
+																		</div>
+
+
+
+																		<div class="form-group">
+																			<label>Response Type</label> <input type="text"
+																				class="form-control" name="responseType"
+																				placeholder="Response Type"
+																				ng-model="stepDetailSave[11]">
+																		</div>
+
+																		<div class="form-group">
+																			<label>Sequence</label> <input type="number"
+																				class="form-control" name="sequence"
+																				placeholder="Sequence" ng-model="stepDetailSave[13]">
+																		</div>
+
+																		<div class="form-group">
+																			<label>Result</label> <select class="form-control"
+																				name="result"
+																				ng-options="result for result in stepResult"
+																				ng-model="stepDetailSave[12]">
+																				<option value="">---Please Select---</option>
+																			</select>
+																			<!-- <input type="text" class="form-control"
+																				name="result" placeholder="Result"
+																				ng-model="stepDetailSave[12]"> -->
+																		</div>
+
+																		<div class="form-group">
+																			<label>Success Key</label> <input type="text"
+																				class="form-control" name="successKey"
+																				placeholder="Success Key"
+																				ng-model='stepDetailSave[4]' />
+																		</div>
+
+																		<div class="form-group">
+																			<label>Success Value</label> <input type="text"
+																				class="form-control" name="successValue"
+																				placeholder="Success Value"
+																				ng-model='stepDetailSave[5]' />
+																		</div>
+
+																		<div class="form-group">
+																			<label>Loggin Enabled</label> <input type="checkbox"
+																				ng-model="stepDetailSave[19]" ng-true-value="1"
+																				ng-false-value="0">
+																		</div>
+
+
+																		<div class="form-group">
+																			<label>Header Template</label>
+																			<textarea type="text" class="form-control"
+																				name="headerTemplate" placeholder="Header Template"
+																				ng-model="stepDetailSave[16]" rows="5"></textarea>
+																		</div>
+																		
+																		<div class="form-group">
+																			<label>Request Template</label>
+																			<textarea type="text" class="form-control"
+																				name="requestTemplate"
+																				placeholder="Request Template"
+																				ng-model="stepDetailSave[10]" rows="10"></textarea>
+																		</div>
+
+
+																		<div class="form-group">
+																			<label>Response Formatter</label>
+																			<textarea type="text" class="form-control"
+																				name="responseFormatter"
+																				placeholder="Response Formatter"
+																				ng-model="stepDetailSave[17]" rows="5"></textarea>
+																		</div>
+																		
+																		<div class="form-group">
+																			<label>Error Formatter</label>
+																			<textarea type="text" class="form-control"
+																				name="failureTemplate"
+																				placeholder="Failure Template"
+																				ng-model="stepDetailSave[18]" rows="10"></textarea>
+																		</div>
+
+
+																		<button class="btn btn-info btn-sm pull-right">Save</button>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="tab-pane " id="jobSetting">
+							<div class="col-xs-6 col-sm-7 col-md-9">
+								<div class="cd-wrap-imp">
+									<div class="panel-group" ng-show=true>
+										<div class="panel panel-default">
+
+											<div class="panel-heading">
+												Job Settings
+												<button class="btn btn-xs btn-info pull-right"
+													data-ng-click="createNewJobSetting()">
+													<i class="fa fa-plus"></i>Add New
+												</button>
+											</div>
+
+											<div class="panel-body">
+												<div class="col-xs-12 col-sm-12 col-md- 12">
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered">
+															<thead>
+																<tr>
+																	<th>Key</th>
+																	<th>Value</th>
+																	<th>Edit</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat='jobSetting in jobSettings'>
+
+																	<td>{{jobSetting[3]}}</td>
+																	<td>{{jobSetting[2]}}</td>
+																	<td><a class="cursor" data="{{jobSetting[0]}}"
+																		data-ng-click="editJobSetting(jobSetting[0])"><i
+																			class="fa fa-pencil" aria-hidden="true"></i></a></td>
+
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+											<!-- Pop Up code for New Payment -->
+											<div id="jobSettingNew" class="modal fade con-messagebox"
+												role="dialog">
+												<div class="modal-dialog">
+													<!-- Modal content-->
+													<div class="modal-content">
+														<div class="modal-header">
+															<h4 class="modal-title">Step</h4>
+														</div>
+														<div class="modal-body">
+															<div class="panel panel-default">
+																<div class="panel-body">
+																	<form name="stepForm" ng-submit="updateJobSetting()">
+
+																		<div class="form-group">
+																			<label>Key</label> <input type="text"
+																				class="form-control" name="key" placeholder="Key"
+																				ng-model='jobSettingSave[3]' />
+																		</div>
+
+																		<div class="form-group">
+																			<label>Value</label> <input type="text"
+																				class="form-control" name="value"
+																				placeholder="Value" ng-model='jobSettingSave[2]' />
+																		</div>
+
+																		<button class="btn btn-info btn-sm pull-right">Save</button>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

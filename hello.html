@@ -1,0 +1,40 @@
+
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+
+<script >
+
+function validateForm() {
+	var x = document.forms["sa"]["name"].value;
+	var y=document.forms["sa"]["mobileNo"].value;
+	var z=document.forms["sa"]["emailId"].value;
+	var txt = {"name":x, "mobileNo":y,"emailId":z};
+	console.log(txt);
+	var myJSON = JSON.stringify(txt);
+	console.log(myJSON);
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             alert(this.responseText);
+         }
+    };
+    xhttp.open("POST", "/Bidding_Application/app/user", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(myJSON);
+}
+ </script>
+<body>
+<form name="sa">
+			
+		<p id="ds"></p>
+		Name <input type="text" name="name"> <br/>
+		Mobile Number <input type="number" name="mobileNo"> <br/>
+		EmailId <input type="text" name="emailId"> <br/>
+		<input type="button" onClick="validateForm()" value="Submit">
+</form>
+
+
+</body>
+</html>

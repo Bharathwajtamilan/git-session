@@ -1,0 +1,46 @@
+
+<html>
+<head>
+<title>Item</title>
+</head>
+
+<script >
+
+function validateForm() {
+    var x = document.forms["item"]["userId"].value;
+    var y=document.forms["item"]["name"].value;
+    var z=document.forms["item"]["startPrice"].value;
+    var s=document.forms["item"]["targetPrice"].value;
+    var t=document.forms["item"]["startTime"].value;
+    var u=document.forms["item"]["endTime"].value;
+    var v=document.forms["item"]["description"].value;
+   
+    var txt = {"userId":x, "name":y,"startPrice":z,"targetPrice":s,"startTime":t,"endTime":u,"description":v};
+    var myJSON = JSON.stringify(txt);
+    return myJSON;
+  }
+</script>
+
+
+
+<body>
+
+
+<form name="item" action="user" onsubmit="validateForm()" method="POST">
+			
+			
+			<p id="ds"></p>
+			User Id <input type="number" name="userId"> <br/>
+			Name <input type="text" name="name"> <br/>
+                        Start price<input type="number" name="startPrice"><br/>
+                        Target price<input type="number" name="targetPrice"> <br/>
+	                Start time<input type = "text" name="startTime"><br/>
+                        End time<input type ="text" name="endTime"><br/>
+			Description<input type="text" name="description"> <br/>
+			
+			<input type="submit" value="Submit">
+		</form>
+
+
+</body>
+</html>

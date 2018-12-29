@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+
+<title>Step Detail New</title>
+
+</head>
+<body class="overflow-hidden">
+
+	<!-- Login CONTENT-->
+	<div class="content">
+		<div class="padding-md">
+			<div class="col-md-12">
+
+				<div class="tabbable tabs-left ">
+					<!-- Only required for left/right tabs -->
+					<a data-target="#step" data-toggle="tab" class="cursor"
+							ng-show={{isEdit}}> Step </a>
+							
+							<!-- row adding -->
+						<div class="tab-pane " id="step">
+							<div class="col-xs-6 col-sm-7 col-md-9">
+								<div class="cd-wrap-imp">
+									<div class="panel-group" ng-show=true>
+										<div class="panel panel-default">
+
+											<div class="panel-heading">Step</div>
+
+											<form name="form" ng-submit="updateStep()" role="form">
+
+												<div class="panel-body">
+													<div class="row">
+														
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Step Code</label> <input maxlength="255"
+																	type="text" class="form-control" name="responseType"
+																	placeholder="Response Type"
+																	ng-model="stepDetailSave[20]">
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Type</label> <select class="form-control"
+																	name="type" ng-options="type for type in stepType"
+																	ng-model="stepDetailSave[6]">
+																	<option value="">---Please Select---</option>
+																</select>
+																<!-- <input type="text" class="form-control" name="type"
+																	placeholder="Type" ng-model="stepDetailSave[14]"> -->
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Sub Type</label> <input maxlength="255"
+																	type="text" class="form-control" name="subType"
+																	placeholder="Sub Type" ng-model="stepDetailSave[13]">
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Path</label> <input maxlength="255" type="text"
+																	class="form-control" name="path" placeholder="Path"
+																	ng-model="stepDetailSave[8]">
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Object Type</label> <select class="form-control"
+																	name="objectType"
+																	ng-options="objectType for objectType in stepObjectType"
+																	ng-model="stepDetailSave[7]">
+																	<option value="">---Please Select---</option>
+																</select>
+																<!-- <input type="text" class="form-control"
+																	name="objectType" placeholder="Object Type"
+																	ng-model="stepDetailSave[7]"> -->
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Response Type</label> <input maxlength="255"
+																	type="text" class="form-control" name="responseType"
+																	placeholder="Response Type"
+																	ng-model="stepDetailSave[10]">
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Sequence</label> <input type="number"
+																	class="form-control" name="sequence"
+																	placeholder="Sequence" ng-model="stepDetailSave[12]">
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Result</label> <select class="form-control"
+																	name="result"
+																	ng-options="result for result in stepResult"
+																	ng-model="stepDetailSave[11]">
+																	<option value="">---Please Select---</option>
+																</select>
+
+																<!-- <input type="text" class="form-control" name="result"
+																	placeholder="Result" ng-model="stepDetailSave[11]"> -->
+															</div>
+														</div>
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Success Key</label> <input maxlength="45"
+																	type="text" class="form-control" name="successKey"
+																	placeholder="Success Key" ng-model='stepDetailSave[3]' />
+															</div>
+														</div>														
+
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Success Value</label> <input maxlength="45"
+																	type="text" class="form-control" name="successValue"
+																	placeholder="Success Value"
+																	ng-model='stepDetailSave[4]' />
+															</div>
+
+														</div>
+														
+														
+														<div class="col-md-4 col-sm-6">
+															<div class="form-group">
+																<label>Logging Enabled</label> <input type="checkbox"
+																	ng-model="stepDetailSave[18]">
+															</div>
+
+														</div>
+														
+														<!-- {{stepDetailSave[18]}} -->
+
+
+														
+
+														<div class="col-md-12 col-sm-6">
+															<div class="form-group">
+																<label>Header Template</label>
+																<textarea type="text" class="form-control"
+																	name="headerTemplate" placeholder="Header Template"
+																	ng-model="stepDetailSave[15]" rows="5"></textarea>
+
+																<!-- <input type="text" class="form-control"
+																	name="headerTemplate" placeholder="Header Template"
+																	ng-model='stepDetailSave[15]' /> -->
+															</div>
+														</div>
+														
+														<div class="col-md-12 col-sm-6">
+															<div class="form-group">
+																<label>Request Template</label>
+																<textarea type="text" class="form-control"
+																	name="requestTemplate" placeholder="Request Template"
+																	ng-model="stepDetailSave[9]" rows="10"></textarea>
+
+															</div>
+														</div>
+
+														<div class="col-md-12 col-sm-6">
+															<div class="form-group">
+																<label>Response Formatter</label>
+																<textarea type="text" class="form-control"
+																	name="responseFormatter"
+																	placeholder="Response Formatter"
+																	ng-model="stepDetailSave[16]" rows="5"></textarea>
+																<!-- <input type="text" class="form-control"
+																	name="responseFormatter"
+																	placeholder="Response Formatter"
+																	ng-model='stepDetailSave[16]' /> -->
+															</div>
+														</div>
+
+														
+														
+														<div class="col-md-12 col-sm-6">
+															<div class="form-group">
+																<label>Error Formatter</label>
+
+																<textarea type="text" class="form-control"
+																	name="failureTemplate" placeholder="Failure Template"
+																	ng-model="stepDetailSave[17]" rows="10"></textarea>
+
+																<!-- <input type="text"
+																	class="form-control" name="failureTemplate"
+																	placeholder="Failure Template"
+																	ng-model='stepDetailSave[3]' /> -->
+															</div>
+														</div>
+
+													</div>
+
+													<div class="row">
+														<div class="text-right mgright">
+															<button type="submit" class="btn btn-info btn-sm">Save</button>
+
+														</div>
+													</div>
+												</div>
+
+											</form>
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+				
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

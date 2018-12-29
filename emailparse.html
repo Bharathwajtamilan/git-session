@@ -1,0 +1,62 @@
+<html>
+ <head> 
+<style> 
+#customers { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%;} 
+#customers td, #customers th { border: 1px solid #ddd; padding: 8px; } 
+#customers tr:nth-child(even){background-color: #f2f2f2;} 
+#customers tr:hover {background-color: #ddd;} 
+#customers th { padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white; } 
+</style> 
+</head> 
+<body> Hello There, These are the failed jobs from ${startDate} to ${endDate}. 
+<div style="padding-top:20px;"> 
+<table id='customers'> 
+<tr>
+<th> Step Id </th> 
+<th> Reason </th> 
+<th> Config Object Json </th>
+</tr> 
+<#list integrationInstanceFailureList as integrationInstanceFailure> 
+<tr> 
+<td> ${integrationInstanceFailure.stepId} </td> 
+<td> ${integrationInstanceFailure.errorResponse} </td> 
+<td> ${integrationInstanceFailure.configObjectJson} </td> 
+</tr> 
+</#list>
+</table> 
+</div> 
+</body> 
+</html>
+
+
+
+
+
+//seller mapping
+
+<#setting date_format="yyyy-MM-dd">https://api.bizom.in/users/getusers/${lastScheduledStartTime?date}/${nextRunTime?date}/${startSequence}/${endSequence}/778/json?access_token=${configs['0'].values['1']['Token']}&datetype=modified
+
+
+valforma
+
+
+
+
+
+//target master
+
+<#setting date_format="MM/dd/yyyy">
+    <#assign currentDate = .now>
+    <#assign numberOfDays = .now?string('dd')?number?long>
+    <#assign numberOfDays = numberOfDays-1>
+    <#assign timeInMillisecond = (1000 * 60 * 60 * 24 * numberOfDays) >
+    <#assign aDate = currentDate?long - timeInMillisecond?long>
+    <#assign Diff = aDate?long>
+    <#assign startDateOfMonth = Diff?number_to_date>
+    <#assign aMonth = .now?string("M")>
+    <#assign aNewMonth = aMonth?number>
+    <#assign aYear = .now?string("yyyy")>
+    <#assign aDay = 0>
+    <#assign aNewDate = "" + (aNewMonth + 1) + "/" + aDay + "/" + aYear>
+    <#assign aLastDay = aNewDate?date>
+    <#setting date_format="yyyy-MM-dd">https://api.bizom.in/targets/getTargetsAPIHQ?access_token=${configs['0'].values['1']['Token']}&fromdate=${startDateOfMonth?date}&todate=${aLastDay?date}&responsetype=json&datetype=modified
